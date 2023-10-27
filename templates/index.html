@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{location}}天気</title>
+  <!-- cssの読み込み -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <select name="location">
+            <option hidden>地域を選択</option>
+            <option value="釧路">釧路</option>
+            <option value="旭川">旭川</option>
+            <option value="札幌">札幌</option>
+            <option value="青森">青森</option>
+            <option value="秋田">秋田</option>
+            <option value="仙台">仙台</option>
+            <option value="新潟">新潟</option>
+            <option value="金沢">金沢</option>
+            <option value="東京">東京</option>
+            <option value="宇都宮">宇都宮</option>
+            <option value="長野">長野</option>
+            <option value="名古屋">名古屋</option>
+            <option value="大阪">大阪</option>
+            <option value="高松">高松</option>
+            <option value="松江">松江</option>
+            <option value="広島">広島</option>
+            <option value="高知">高知</option>
+            <option value="福岡">福岡</option>
+            <option value="鹿児島">鹿児島</option>
+            <option value="奄美">奄美</option>
+            <option value="那覇">那覇</option>
+            <option value="石垣">石垣</option>
+            </select>
+          <div>
+            <input type="submit" value="取得">
+          </div>
+  <h1>{{location}}の天気</h1>
+  {{map|safe}}
+  <main id="main">
+    <ul class="slider">
+      {% for day in value %}
+      <li>
+      <h2>{{ day['date']}}の天気</h2>
+      <ul>
+          <li>天気:{{ day['forecast'] }}</li>
+          <li>気温: {{ day['maxtemp']}}度 / {{ day['mintemp']}}度</li>
+          <li>降水確率:{{ day['poptimes']}}</li>
+      </ul>
+      </li>
+      {% endfor %}
+    </ul>
+    
+  </main>
+  <p>
+    出典: <a href="http://www.jma.go.jp/">気象庁</a>
+  </p>
+
+<!-- jsの読み込み -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="static/js/script.js"></script>
+</body>
+</html>
